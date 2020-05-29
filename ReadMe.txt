@@ -5,7 +5,7 @@ Copyright © 2017 Md Imam Hossain <emamhd@gmail.com>
 This program uses:
 
     Python TkInter for the graphical user interface 
-    GnGeo for emulating Neo Geo system on PC
+    GnGeo for emulating Neo Geo system on PC (gngeo binary needs to be placed inside gngeo folder of Shopne Arcade folder)
 
 To install TKInter on Ubuntu run the following command into the terminal emulator:
 
@@ -29,4 +29,4 @@ Neo Geo system emulation features:
     
 To be able to play Neo Geo games using Shopne Arcade you need a valid Neo Geo BIOS file where the file should be put in the Neo Geo games rom files.
 
-To launch Shopne Arcade, simply run Shopne file.
+To launch Shopne Arcade, simply run Shopne.py file.
