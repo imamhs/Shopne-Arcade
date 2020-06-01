@@ -5,7 +5,7 @@ Copyright © 2017 Md Imam Hossain <emamhd@gmail.com>
 This program uses:
 
     Python TkInter for the graphical user interface 
-    GnGeo for emulating Neo Geo system on PC (gngeo binary file and gngeo_data.zip need to be placed inside gngeo folder of Shopne Arcade folder)
+    GnGeo for emulating Neo Geo system on PC (gngeo_bin binary file and gngeo_data.zip need to be placed inside gngeo folder of Shopne Arcade folder)
 
 To install TKInter on Ubuntu run the following command into the terminal emulator:
 
