@@ -1,3 +1,6 @@
+# Copyright (c) 2017, Md Imam Hossain (emamhd at gmail dot com)
+# see LICENSE.txt for details
+
 from functools import partial
 import os
 import json
@@ -949,16 +952,16 @@ def about_button_callback(window):
     about_window_frame.pack_propagate(False)
     about_window_frame.pack(fill=tkinter.BOTH, expand=tkinter.TRUE, side=tkinter.TOP)
 
-    shopne_arcade_icon = tkinter.PhotoImage(file='./data/logo.png')
+    shopne_arcade_logo_image = tkinter.PhotoImage(file='./data/logo.png')
 
-    shopne_arcade_label = tkinter.Label(about_window_frame, image=shopne_arcade_icon, background=window_background_color, foreground=window_foreground_color)
-    shopne_arcade_label.pack(fill=tkinter.BOTH, expand=tkinter.TRUE, side=tkinter.TOP, padx=20, pady=10)
+    shopne_arcade_logo = tkinter.Label(about_window_frame, image=shopne_arcade_logo_image, background=window_background_color, foreground=window_foreground_color)
+    shopne_arcade_logo.pack(fill=tkinter.BOTH, expand=tkinter.TRUE, side=tkinter.TOP, padx=20, pady=10)
+
+    shopne_arcade_label = tkinter.Label(about_window_frame, background=window_background_color, foreground=window_foreground_color, text='Shopne Arcade ' + str(shopne_variables.shopne_arcade_version) + ' using GnGeo version ' + str(gngeo_engine.version))
+    shopne_arcade_label.pack(fill=tkinter.BOTH, expand=tkinter.TRUE, side=tkinter.TOP, padx=20, pady=4)
 
     shopne_arcade_description_label = tkinter.Label(about_window_frame, background=window_background_color, foreground=window_foreground_color, text=shopne_variables.shopne_arcade_description)
     shopne_arcade_description_label.pack(fill=tkinter.BOTH, expand=tkinter.TRUE, side=tkinter.TOP, padx=20, pady=4)
-
-    shopne_arcade_version_label = tkinter.Label(about_window_frame, background=window_background_color, foreground=window_foreground_color, text='Version '+ str(shopne_variables.shopne_arcade_version))
-    shopne_arcade_version_label.pack(fill=tkinter.BOTH, expand=tkinter.TRUE, side=tkinter.TOP, padx=20, pady=4)
 
     shopne_arcade_copyright_label = tkinter.Label(about_window_frame, background=window_background_color, foreground=window_foreground_color, text='Copyright © 2017 ' + shopne_variables.shopne_arcade_copyright)
     shopne_arcade_copyright_label.pack(fill=tkinter.BOTH, expand=tkinter.TRUE, side=tkinter.TOP, padx=20)
@@ -978,7 +981,7 @@ def load_rom_callback(window, game_list_widget):
 
     if game_list_widget.size() < 1:
         shopne_variables.main_window_status_label.set('No games in the library')
-        window.after(3000, lambda: shopne_variables.main_window_status_label.set('Click Roms directories to add games to library'))
+        window.after(3000, lambda: shopne_variables.main_window_status_label.set('Click Roms directories to add games to the library'))
         return
 
     if len(game_list_widget.curselection()) < 1:
@@ -1352,7 +1355,7 @@ def main(gngeo_status):
         number_of_roms = game_list.size()
 
         if number_of_roms == 0:
-            shopne_variables.main_window_status_label.set(str(game_list.size()) + 'No games in the library')
+            shopne_variables.main_window_status_label.set('No games in the library')
             main_window.after(5000, lambda: shopne_variables.main_window_status_label.set('Click Roms directories to add games to library'))
         elif number_of_roms == 1:
             shopne_variables.main_window_status_label.set(str(game_list.size()) + ' game in the library')
@@ -1396,7 +1399,7 @@ def main(gngeo_status):
 
     status_label = tkinter.Label(settings_frame, textvariable=shopne_variables.main_window_status_label, background=application_background_color)
     if (gngeo_status == 1):
-        shopne_variables.main_window_status_label.set('Please check you have all dependencies\ninstalled for running Shopne Arcade')
+        shopne_variables.main_window_status_label.set('Please check you have all the system libraries\ninstalled for running Shopne Arcade')
     status_label.pack(fill=tkinter.X, pady=10)
 
     about_button = tkinter.Button(settings_frame, text="About", font=(None, 10), foreground=button_foreground_color, activeforeground=button_foreground_color, activebackground=button_background_focus_color, background=button_background_color, highlightbackground=application_background_color, command=lambda: about_button_callback(main_window))

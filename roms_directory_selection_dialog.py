@@ -1,3 +1,6 @@
+# Copyright (c) 2017, Md Imam Hossain (emamhd at gmail dot com)
+# see LICENSE.txt for details
+
 import os
 import tkinter
 

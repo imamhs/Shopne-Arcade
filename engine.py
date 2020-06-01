@@ -1,3 +1,6 @@
+# Copyright (c) 2017, Md Imam Hossain (emamhd at gmail dot com)
+# see LICENSE.txt for details
+
 from os import popen
 
 GNGEO_AUDIO_SAMPLE_RATES = ['default', '8000', '11025', '16000', '22050', '24000', '44100']
