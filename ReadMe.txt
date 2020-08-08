@@ -1,4 +1,4 @@
-Shopne Arcade version 1.0
+Shopne Arcade - A Frontend for GnGeo NeoGeo emulator written in Python
 
 Copyright © 2017 Md Imam Hossain <emamhd@gmail.com> 
 
@@ -30,3 +30,7 @@ Neo Geo system emulation features:
 To be able to play Neo Geo games using Shopne Arcade you need a valid Neo Geo BIOS file where the file should be put in the Neo Geo games rom files.
 
 To launch Shopne Arcade, simply run Shopne.py file.
+
+You can find Shopne Arcade bundled with gngeo binary packages from the following site:
+
+https://shopnearcade.blogspot.com/
