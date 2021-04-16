@@ -26,7 +26,13 @@ Neo Geo system emulation features:
     Full controller configuration for keyboard and gamepads
     Support for different Neo Geo region BIOS
     Save and Load games states (state files are saved in the directory .gngeo inside users home folder)
-    
+
+![Main window](screenshot/mw.png)
+![Graphics settings](screenshot/gr.png)
+![Controller settings](screenshot/con.png)
+![Sound settings](screenshot/sound.png)
+![BIOS settings](screenshot/bi.png)
+
 To be able to play Neo Geo games using Shopne Arcade you need a valid Neo Geo BIOS file where the file should be put in the Neo Geo games rom files.
 
 To launch Shopne Arcade, simply run Shopne.py file.
