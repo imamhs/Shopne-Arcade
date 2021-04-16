@@ -4,8 +4,8 @@ Copyright © 2017 Md Imam Hossain <emamhd@gmail.com>
 
 This program uses:
 
-    Python TkInter for the graphical user interface 
-    GnGeo for emulating Neo Geo system on PC (gngeo_bin binary file and gngeo_data.zip need to be placed inside gngeo folder of Shopne Arcade folder)
+Python TkInter for the graphical user interface 
+GnGeo for emulating Neo Geo system on PC (gngeo_bin binary file and gngeo_data.zip need to be placed inside gngeo folder of Shopne Arcade folder)
 
 To install TKInter on Ubuntu run the following command into the terminal emulator:
 
@@ -15,17 +15,17 @@ Shopne Arcade is a front-end application designed to easily play Neo Geo system 
 
 Neo Geo system emulation features:
 
-    Playing games in fullscreen mode
-    Automatically adjust video frame rates
-    Interpolation between frames
-    Use GPU memory for performance
-    Synchronise video with monitor refresh rate
-    Video scaling
-    Video effects
-    Emulating audio in different sampling rates
-    Full controller configuration for keyboard and gamepads
-    Support for different Neo Geo region BIOS
-    Save and Load games states (state files are saved in the directory .gngeo inside users home folder)
+Playing games in fullscreen mode
+Automatically adjust video frame rates
+Interpolation between frames
+Use GPU memory for performance
+Synchronise video with monitor refresh rate
+Video scaling
+Video effects
+Emulating audio in different sampling rates
+Full controller configuration for keyboard and gamepads
+Support for different Neo Geo region BIOS
+Save and Load games states (state files are saved in the directory .gngeo inside users home folder)
 
 ![Main window](screenshot/mw.png)
 ![Graphics settings](screenshot/gr.png)
