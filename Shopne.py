@@ -88,11 +88,11 @@ class ShopneVariables():
             self.player2_button_selections.append(tkinter.StringVar())
         self.main_window_status_label = tkinter.StringVar()
         self.currrent_roms_directory_location = tkinter.StringVar()
-        self.shopne_arcade_version = 1.0
-        self.shopne_arcade_description = 'Play Neo Geo system games on PC'
-        self.shopne_arcade_copyright = 'Md Imam Hossain'
+        self.shopne_arcade_version = 1.9
+        self.shopne_arcade_description = 'A frontend for GnGeo emulator written purely in Python'
         self.shopne_arcade_email = 'emamhd@gmail.com'
-        self.shopne_arcade_licence = 'This program comes with absolutely no warranty.\nSee the Licence file for details.'
+        self.shopne_arcade_copyright = 'Md Imam Hossain ' + '<' + self.shopne_arcade_email + '>'
+        self.shopne_arcade_licence = 'This program comes with absolutely no warranty.'
 
 class GngeoEngineData():
 
@@ -132,8 +132,8 @@ def add_directory_button_callback(window, dir_list_widget):
     window_button_foreground_color = '#171718'
 
     rom_directories_selection_dialog_window = tkinter.Toplevel(window)
-    rom_directories_selection_dialog_window.title("Select roms directory")
-    rom_directories_selection_dialog_window.geometry('%dx%d+%d+%d' % (460, 400, window.winfo_x() + ((window.winfo_width() / 2) - (460 / 2)), window.winfo_y() + ((window.winfo_height() / 2) - (400 / 2))))
+    rom_directories_selection_dialog_window.title("Select games location")
+    rom_directories_selection_dialog_window.geometry('%dx%d+%d+%d' % (460, 420, window.winfo_x() + ((window.winfo_width() / 2) - (460 / 2)), window.winfo_y() + ((window.winfo_height() / 2) - (420 / 2))))
 
     rom_directories_selection_dialog_frame = tkinter.Frame(rom_directories_selection_dialog_window, padx=10, pady=5, background=window_background_color)
     rom_directories_selection_dialog_frame.pack_propagate(False)
@@ -143,7 +143,7 @@ def add_directory_button_callback(window, dir_list_widget):
 
     folder_selection.folders_selection_window_frame.pack(fill=tkinter.BOTH, expand=tkinter.TRUE, side=tkinter.TOP)
 
-    open_button = tkinter.Button(rom_directories_selection_dialog_frame, font=(None, 10), activeforeground=window_button_foreground_color, activebackground=window_button_focus_background_color, highlightbackground=window_background_color, background=window_button_background_color, foreground=window_button_foreground_color, text="Open", command=lambda: roms_directory_open_button_callback(rom_directories_selection_dialog_window, dir_list_widget, folder_selection))
+    open_button = tkinter.Button(rom_directories_selection_dialog_frame, font=(None, 10), activeforeground=window_button_foreground_color, activebackground=window_button_focus_background_color, highlightbackground=window_background_color, background=window_button_background_color, foreground=window_button_foreground_color, text="Add current folder location", command=lambda: roms_directory_open_button_callback(rom_directories_selection_dialog_window, dir_list_widget, folder_selection))
     open_button.pack(fill=tkinter.X, side=tkinter.TOP)
 
     rom_directories_selection_dialog_window.grab_set()
@@ -170,14 +170,14 @@ def rom_directories_selection_button_callback(window, game_list_widget):
     window_button_foreground_color = '#171718'
 
     rom_directories_selection_window = tkinter.Toplevel(window)
-    rom_directories_selection_window.title("Roms directories")
-    rom_directories_selection_window.geometry('%dx%d+%d+%d' % (400, 340, window.winfo_x() + ((window.winfo_width() / 2) - (400 / 2)), window.winfo_y() + ((window.winfo_height() / 2) - (340 / 2))))
+    rom_directories_selection_window.title("Games locations")
+    rom_directories_selection_window.geometry('%dx%d+%d+%d' % (400, 420, window.winfo_x() + ((window.winfo_width() / 2) - (400 / 2)), window.winfo_y() + ((window.winfo_height() / 2) - (420 / 2))))
 
     rom_directories_selection_frame = tkinter.Frame(rom_directories_selection_window, padx=10, pady=10, background=window_background_color)
     rom_directories_selection_frame.pack_propagate(False)
     rom_directories_selection_frame.pack(fill=tkinter.BOTH, expand=1)
 
-    rom_directories_window = tkinter.LabelFrame(rom_directories_selection_frame, foreground=window_foreground_color, background=window_background_color, text="Roms directories", font=(None, 12), relief=tkinter.FLAT)
+    rom_directories_window = tkinter.LabelFrame(rom_directories_selection_frame, foreground=window_foreground_color, background=window_background_color, text="Game rom files locations", font=(None, 12), relief=tkinter.FLAT)
     rom_directories_window.pack(fill=tkinter.BOTH, expand=1, side=tkinter.TOP)
 
     directories_list = tkinter.Listbox(rom_directories_window, relief=tkinter.FLAT, highlightcolor='#DFDFDF', highlightthickness=2, font=(None, 12))
@@ -186,10 +186,10 @@ def rom_directories_selection_button_callback(window, game_list_widget):
         directories_list.insert(tkinter.END, directory)
     directories_list.pack(fill=tkinter.BOTH, expand=1, padx=5, pady=10)
 
-    add_directory_button = tkinter.Button(rom_directories_selection_frame, font=(None, 10), activeforeground=window_button_foreground_color, activebackground=window_button_focus_background_color, highlightbackground=window_background_color, background=window_button_background_color, foreground=window_button_foreground_color, text="Add directory", command=lambda: add_directory_button_callback(rom_directories_selection_window, directories_list))
+    add_directory_button = tkinter.Button(rom_directories_selection_frame, font=(None, 10), activeforeground=window_button_foreground_color, activebackground=window_button_focus_background_color, highlightbackground=window_background_color, background=window_button_background_color, foreground=window_button_foreground_color, text="Add games location", command=lambda: add_directory_button_callback(rom_directories_selection_window, directories_list))
     add_directory_button.pack(fill=tkinter.X, side=tkinter.TOP)
 
-    remove_directory_button = tkinter.Button(rom_directories_selection_frame, font=(None, 10), activeforeground=window_button_foreground_color, activebackground=window_button_focus_background_color, highlightbackground=window_background_color, background=window_button_background_color, foreground=window_button_foreground_color, text="Remove directory", command=lambda: remove_directory_button_callback(directories_list))
+    remove_directory_button = tkinter.Button(rom_directories_selection_frame, font=(None, 10), activeforeground=window_button_foreground_color, activebackground=window_button_focus_background_color, highlightbackground=window_background_color, background=window_button_background_color, foreground=window_button_foreground_color, text="Remove selected location", command=lambda: remove_directory_button_callback(directories_list))
     remove_directory_button.pack(fill=tkinter.X, side=tkinter.TOP)
 
     rom_directories_selection_window.grab_set()
@@ -204,11 +204,15 @@ def rom_directories_selection_button_callback(window, game_list_widget):
 
     number_of_roms = game_list_widget.size()
 
-    if number_of_roms > 1 or number_of_roms == 0:
-        shopne_variables.main_window_status_label.set(str(game_list_widget.size()) +' games in the library')
-    else:
+    if number_of_roms == 0:
+        shopne_variables.main_window_status_label.set('No games in the library')
+        window.after(5000, lambda: shopne_variables.main_window_status_label.set('Click Game files locations to add games to library'))
+    elif number_of_roms == 1:
         shopne_variables.main_window_status_label.set(str(game_list_widget.size()) + ' game in the library')
-    window.after(10000, lambda: shopne_variables.main_window_status_label.set('Select a game from Games and click Load game'))
+        window.after(10000, lambda: shopne_variables.main_window_status_label.set('Select the game from Games and click Load game'+"\nDouble click on the game to see the cover art"))
+    else:
+        shopne_variables.main_window_status_label.set(str(game_list_widget.size()) +' games in the library')
+        window.after(10000, lambda: shopne_variables.main_window_status_label.set('Select a game from Games and click Load game'+"\nDouble click on the game to see the cover art"))
 
 def graphics_default_settings_callback():
 
@@ -229,7 +233,7 @@ def video_renderer_combobox_selection_callback (video_effects_combobox_widget, *
 
     if shopne_variables.video_renderer_combobox_selection.get() == GNGEO_BLITTERS[2]:
         video_effects_combobox_widget.config(state=tkinter.DISABLED)
-        shopne_variables.video_effects_combobox_selection.set(GNGEO_VIDEO_EFFECTS[7])
+        shopne_variables.video_effects_combobox_selection.set(GNGEO_VIDEO_EFFECTS[9])
     else:
         video_effects_combobox_widget.config(state=tkinter.NORMAL)
 
@@ -237,7 +241,7 @@ def video_effects_combobox_selection_callback (video_scaling_combobox_widget, *a
 
     global shopne_variables
 
-    if shopne_variables.video_effects_combobox_selection.get() == GNGEO_VIDEO_EFFECTS[7]:
+    if shopne_variables.video_effects_combobox_selection.get() == GNGEO_VIDEO_EFFECTS[9]:
         video_scaling_combobox_widget.config(state=tkinter.NORMAL)
     else:
         shopne_variables.video_scaling_combobox_selection.set(GNGEO_VIDEO_SCALINGS[0])
@@ -261,19 +265,19 @@ def graphics_options_button_callback(window):
     graphics_options_frame.pack_propagate(False)
     graphics_options_frame.pack(fill=tkinter.BOTH, expand=tkinter.TRUE, anchor=tkinter.NW)
 
-    fullscreen_ckeck_button = tkinter.Checkbutton(graphics_options_frame, font=(None, 10), selectcolor=window_background_color, foreground=window_foreground_color, activeforeground=window_foreground_color, background=window_background_color, highlightbackground=window_background_color, activebackground=window_background_color,text="  Go to fullscreen", variable=shopne_variables.fullscreen_ckeck_button_state)
+    fullscreen_ckeck_button = tkinter.Checkbutton(graphics_options_frame, font=(None, 10), selectcolor=window_background_color, foreground=window_foreground_color, activeforeground=window_foreground_color, background=window_background_color, highlightbackground=window_background_color, activebackground=window_background_color,text="  Run game in fullscreen mode", variable=shopne_variables.fullscreen_ckeck_button_state)
     fullscreen_ckeck_button.pack(fill=tkinter.Y, expand=tkinter.TRUE, anchor=tkinter.NW)
 
-    autoframeskip_ckeck_button = tkinter.Checkbutton(graphics_options_frame, font=(None, 10), selectcolor=window_background_color, foreground=window_foreground_color, activeforeground=window_foreground_color, background=window_background_color, highlightbackground=window_background_color, activebackground=window_background_color, text="  Automatically adjust frame rates", variable=shopne_variables.autoframeskip_ckeck_button_state)
+    autoframeskip_ckeck_button = tkinter.Checkbutton(graphics_options_frame, font=(None, 10), selectcolor=window_background_color, foreground=window_foreground_color, activeforeground=window_foreground_color, background=window_background_color, highlightbackground=window_background_color, activebackground=window_background_color, text="  Automatically adjust graphics performance", variable=shopne_variables.autoframeskip_ckeck_button_state)
     autoframeskip_ckeck_button.pack(fill=tkinter.Y, expand=tkinter.TRUE, anchor=tkinter.NW)
 
-    interpolation_ckeck_button = tkinter.Checkbutton(graphics_options_frame, font=(None, 10), selectcolor=window_background_color, foreground=window_foreground_color, activeforeground=window_foreground_color, background=window_background_color, highlightbackground=window_background_color, activebackground=window_background_color, text="  Interpolation between frames", variable=shopne_variables.interpolation_ckeck_button_state)
+    interpolation_ckeck_button = tkinter.Checkbutton(graphics_options_frame, font=(None, 10), selectcolor=window_background_color, foreground=window_foreground_color, activeforeground=window_foreground_color, background=window_background_color, highlightbackground=window_background_color, activebackground=window_background_color, text="  Improve graphics animations", variable=shopne_variables.interpolation_ckeck_button_state)
     interpolation_ckeck_button.pack(fill=tkinter.Y, expand=tkinter.TRUE, anchor=tkinter.NW)
 
-    hwsurface_ckeck_button = tkinter.Checkbutton(graphics_options_frame, font=(None, 10), selectcolor=window_background_color, foreground=window_foreground_color, activeforeground=window_foreground_color, background=window_background_color, highlightbackground=window_background_color, activebackground=window_background_color, text="  Use GPU memory for graphics", variable=shopne_variables.hwsurface_ckeck_button_state)
+    hwsurface_ckeck_button = tkinter.Checkbutton(graphics_options_frame, font=(None, 10), selectcolor=window_background_color, foreground=window_foreground_color, activeforeground=window_foreground_color, background=window_background_color, highlightbackground=window_background_color, activebackground=window_background_color, text="  Use graphics card memory", variable=shopne_variables.hwsurface_ckeck_button_state)
     hwsurface_ckeck_button.pack(fill=tkinter.Y, expand=tkinter.TRUE, anchor=tkinter.NW)
 
-    vsync_ckeck_button = tkinter.Checkbutton(graphics_options_frame, font=(None, 10), selectcolor=window_background_color, foreground=window_foreground_color, activeforeground=window_foreground_color, background=window_background_color, highlightbackground=window_background_color, activebackground=window_background_color, text="  Synchronise video with the display", variable=shopne_variables.vsync_ckeck_button_state)
+    vsync_ckeck_button = tkinter.Checkbutton(graphics_options_frame, font=(None, 10), selectcolor=window_background_color, foreground=window_foreground_color, activeforeground=window_foreground_color, background=window_background_color, highlightbackground=window_background_color, activebackground=window_background_color, text="  Synchronise video with the screen", variable=shopne_variables.vsync_ckeck_button_state)
     vsync_ckeck_button.pack(fill=tkinter.Y, expand=tkinter.TRUE, anchor=tkinter.NW)
 
     video_scaling_frame = tkinter.Frame(graphics_options_frame, background=window_background_color)
@@ -306,7 +310,7 @@ def graphics_options_button_callback(window):
     video_renderer_frame = tkinter.Frame(graphics_options_frame, background=window_background_color)
     video_renderer_frame.pack(fill=tkinter.BOTH, expand=tkinter.TRUE, anchor=tkinter.NW)
 
-    video_renderer_label = tkinter.Label(video_renderer_frame, font=(None, 10), background=window_background_color, foreground=window_foreground_color, text="Video renderer")
+    video_renderer_label = tkinter.Label(video_renderer_frame, font=(None, 10), background=window_background_color, foreground=window_foreground_color, text="Video engine")
     video_renderer_label.pack(side=tkinter.LEFT, padx=20, pady=10)
 
     video_renderer_combobox_callback_id = None
@@ -957,23 +961,56 @@ def about_button_callback(window):
     shopne_arcade_logo = tkinter.Label(about_window_frame, image=shopne_arcade_logo_image, background=window_background_color, foreground=window_foreground_color)
     shopne_arcade_logo.pack(fill=tkinter.BOTH, expand=tkinter.TRUE, side=tkinter.TOP, padx=20, pady=10)
 
-    shopne_arcade_label = tkinter.Label(about_window_frame, background=window_background_color, foreground=window_foreground_color, text='Shopne Arcade ' + str(shopne_variables.shopne_arcade_version) + ' using GnGeo version ' + str(gngeo_engine.version))
+    shopne_arcade_label = tkinter.Label(about_window_frame, background=window_background_color, foreground=window_foreground_color, text='Shopne Arcade ' + str(shopne_variables.shopne_arcade_version) + " " + shopne_variables.shopne_arcade_description)
     shopne_arcade_label.pack(fill=tkinter.BOTH, expand=tkinter.TRUE, side=tkinter.TOP, padx=20, pady=4)
 
-    shopne_arcade_description_label = tkinter.Label(about_window_frame, background=window_background_color, foreground=window_foreground_color, text=shopne_variables.shopne_arcade_description)
+    shopne_arcade_description_label = tkinter.Label(about_window_frame, background=window_background_color, foreground=window_foreground_color, text= ' using GnGeo version ' + str(gngeo_engine.version))
     shopne_arcade_description_label.pack(fill=tkinter.BOTH, expand=tkinter.TRUE, side=tkinter.TOP, padx=20, pady=4)
 
-    shopne_arcade_copyright_label = tkinter.Label(about_window_frame, background=window_background_color, foreground=window_foreground_color, text='Copyright © 2017 ' + shopne_variables.shopne_arcade_copyright)
+    shopne_arcade_copyright_label = tkinter.Label(about_window_frame, background=window_background_color, foreground=window_foreground_color, text='Copyright © 2017-2021 ' + shopne_variables.shopne_arcade_copyright)
     shopne_arcade_copyright_label.pack(fill=tkinter.BOTH, expand=tkinter.TRUE, side=tkinter.TOP, padx=20)
-
-    shopne_arcade_email_label = tkinter.Label(about_window_frame, background=window_background_color, foreground=window_foreground_color, text='<' + shopne_variables.shopne_arcade_email + '>')
-    shopne_arcade_email_label.pack(fill=tkinter.BOTH, expand=tkinter.TRUE, side=tkinter.TOP, padx=20)
 
     shopne_arcade_licence_label = tkinter.Label(about_window_frame, background=window_background_color, foreground=window_foreground_color, text=shopne_variables.shopne_arcade_licence)
     shopne_arcade_licence_label.pack(fill=tkinter.BOTH, expand=tkinter.TRUE, side=tkinter.TOP, padx=20, pady=4)
+    
+    shopne_arcade_other_label = tkinter.Label(about_window_frame, background=window_background_color, foreground=window_foreground_color, text="All game cover arts are the property of their respective copyright holders.")
+    shopne_arcade_other_label.pack(fill=tkinter.BOTH, expand=tkinter.TRUE, side=tkinter.TOP, padx=20, pady=4)
 
     about_window.grab_set()
     window.wait_window(about_window)
+
+def cover_callback(event, window, game_list_widget):
+
+    window_background_color = '#171718'
+    window_foreground_color = '#FFFFFF'
+    window_button_background_color = '#B17513'
+    window_button_focus_background_color = '#B18C50'
+    window_button_foreground_color = '#171718'
+
+    selection = game_list_widget.get(game_list_widget.curselection()[0])
+
+    cover_window = tkinter.Toplevel(window)
+    cover_window.title("Game cover: "+ selection)
+    cover_window.geometry('%dx%d+%d+%d' % (273, 365, window.winfo_x() + ((window.winfo_width() / 2) - (273 / 2)), window.winfo_y() + ((window.winfo_height() / 2) - (365 / 2))))
+
+    cover_window_frame = tkinter.Frame(cover_window, padx=5, pady=5, background=window_background_color)
+    cover_window_frame.pack_propagate(False)
+    cover_window_frame.pack(fill=tkinter.BOTH, expand=tkinter.TRUE, side=tkinter.TOP)
+
+    rom_selection = None
+
+    for rom in GNGEO_ROMS_LIST:
+        if (GNGEO_ROMS_LIST[rom] == selection):
+            rom_selection = rom
+            break
+
+    cover_arcade_logo_image = tkinter.PhotoImage(file='./data/covers/' + rom_selection + '.png')
+
+    cover_arcade_logo = tkinter.Label(cover_window_frame, image=cover_arcade_logo_image, background=window_background_color, foreground=window_foreground_color)
+    cover_arcade_logo.pack(fill=tkinter.BOTH, expand=tkinter.TRUE, side=tkinter.TOP, padx=5, pady=5)
+
+    #cover_window.grab_set()
+    window.wait_window(cover_window)
 
 def load_rom_callback(window, game_list_widget):
 
@@ -981,7 +1018,7 @@ def load_rom_callback(window, game_list_widget):
 
     if game_list_widget.size() < 1:
         shopne_variables.main_window_status_label.set('No games in the library')
-        window.after(3000, lambda: shopne_variables.main_window_status_label.set('Click Roms directories to add games to the library'))
+        window.after(3000, lambda: shopne_variables.main_window_status_label.set('Click Game rom files locations to add games to the library'))
         return
 
     if len(game_list_widget.curselection()) < 1:
@@ -1326,7 +1363,7 @@ def main(gngeo_status):
     main_window = tkinter.Tk()
     icon = tkinter.PhotoImage(file='./data/icon.png')
     main_window.title("Shopne Arcade")
-    main_window.geometry('%dx%d+%d+%d' % (600, 340, (main_window.winfo_screenwidth()/2)-(600/2), (main_window.winfo_screenheight()/2)-(340/2)))
+    main_window.geometry('%dx%d+%d+%d' % (640, 480, (main_window.winfo_screenwidth()/2)-(640/2), (main_window.winfo_screenheight()/2)-(480/2)))
     main_window.tk.call('wm', 'iconphoto', main_window._w, '-default', icon)
 
     load_settings()
@@ -1341,9 +1378,10 @@ def main(gngeo_status):
     rom_list_label = tkinter.Label(rom_list_frame, text="Games", font=(None, 14, 'bold'), background=application_background_color)
     rom_list_label.pack(side=tkinter.TOP, anchor=tkinter.NW)
 
-    game_list = tkinter.Listbox(rom_list_frame, selectmode=tkinter.SINGLE, relief=tkinter.FLAT, highlightthickness=2, font=(None, 14))
+    game_list = tkinter.Listbox(rom_list_frame, selectmode=tkinter.SINGLE, relief=tkinter.FLAT, highlightthickness=2, font=(None, 14), activestyle='underline', cursor='hand1')
     game_list.pack(fill=tkinter.BOTH, expand=tkinter.TRUE, side=tkinter.TOP)
     game_list.focus()
+    game_list.bind('<Double-Button-1>', lambda event: cover_callback(event, main_window, game_list))
 
     if(gngeo_status == 0):
 
@@ -1351,18 +1389,19 @@ def main(gngeo_status):
 
         for rom in roms.roms:
             game_list.insert(tkinter.END, GNGEO_ROMS_LIST[rom])
+            game_list.itemconfig(tkinter.END, bg = 'gray95' if game_list.size() % 2 == 0 else 'gray98')
 
         number_of_roms = game_list.size()
 
         if number_of_roms == 0:
             shopne_variables.main_window_status_label.set('No games in the library')
-            main_window.after(5000, lambda: shopne_variables.main_window_status_label.set('Click Roms directories to add games to library'))
+            main_window.after(5000, lambda: shopne_variables.main_window_status_label.set('Click Game files locations to add games to library'))
         elif number_of_roms == 1:
             shopne_variables.main_window_status_label.set(str(game_list.size()) + ' game in the library')
-            main_window.after(10000, lambda: shopne_variables.main_window_status_label.set('Select a game from Games and click Load game'))
+            main_window.after(10000, lambda: shopne_variables.main_window_status_label.set('Select the game from Games and click Load game'+"\nDouble click on the game to see the cover art"))
         else:
             shopne_variables.main_window_status_label.set(str(game_list.size()) + ' games in the library')
-            main_window.after(10000, lambda: shopne_variables.main_window_status_label.set('Select a game from Games and click Load game'))
+            main_window.after(10000, lambda: shopne_variables.main_window_status_label.set('Select a game from Games and click Load game'+"\nDouble click on the game to see the cover art"))
 
     load_rom_button = tkinter.Button(rom_list_frame, text="Load game", font=(None, 12), foreground=button_foreground_color, activeforeground=button_foreground_color, activebackground=button_background_focus_color, background=button_background_color, highlightbackground=application_background_color, command=lambda: load_rom_callback(main_window, game_list))
     if (gngeo_status == 1):
@@ -1372,7 +1411,7 @@ def main(gngeo_status):
     settings_frame = tkinter.Frame(main_window_frame, width=190, height=280, background=application_background_color)
     settings_frame.pack(side=tkinter.RIGHT)
 
-    rom_directories_button = tkinter.Button(settings_frame, text ="Roms directories", font=(None, 10), foreground=button_foreground_color, activeforeground=button_foreground_color, activebackground=button_background_focus_color, background=button_background_color, highlightbackground=application_background_color, command=lambda: rom_directories_selection_button_callback(main_window, game_list))
+    rom_directories_button = tkinter.Button(settings_frame, text ="Game files locations", font=(None, 10), foreground=button_foreground_color, activeforeground=button_foreground_color, activebackground=button_background_focus_color, background=button_background_color, highlightbackground=application_background_color, command=lambda: rom_directories_selection_button_callback(main_window, game_list))
     if (gngeo_status == 1):
         rom_directories_button.config(state=tkinter.DISABLED)
     rom_directories_button.pack(fill=tkinter.X)

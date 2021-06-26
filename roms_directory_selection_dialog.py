@@ -14,7 +14,7 @@ class FolderData():
         self.number_of_files = len(self.files)
         self.location_label_text =  tkinter.StringVar()
         self.folders_number_label_text = tkinter.StringVar()
-        self.location_label_text.set(self.location)
+        self.location_label_text.set("Current folder location: " + self.location)
 
     def update(self, location):
         self.location = os.path.abspath(location)
@@ -22,7 +22,7 @@ class FolderData():
         self.files = os.listdir(self.location)
         self.folders.clear()
         self.number_of_files = len(self.files)
-        self.location_label_text.set(self.location)
+        self.location_label_text.set("Current folder location: " + self.location)
 
 class FoldersWindow():
 
@@ -85,7 +85,7 @@ class Folder():
                 Folder(self.container, self.container_of_parent, self.parent_folder_data, background_color=self.background_color, foreground_color=self.foreground_color ,icon=self.icon_data, name=file, location=self.parent_folder_data.location).folder_frame.pack(anchor=tkinter.NW)
                 self.parent_folder_data.folders.append(file)
 
-        self.parent_folder_data.folders_number_label_text.set(str(len(self.parent_folder_data.folders)) + ' folders and ' + str(len(self.parent_folder_data.files) - len(self.parent_folder_data.folders)) + ' files')
+        self.parent_folder_data.folders_number_label_text.set(str(len(self.parent_folder_data.folders)) + ' folders and ' + str(len(self.parent_folder_data.files) - len(self.parent_folder_data.folders)) + ' files are found in current folder')
 
         self.container_of_parent.xview_moveto(0)
         self.container_of_parent.yview_moveto(0)
@@ -116,7 +116,7 @@ class FoldersSelectionWindow():
 
         self.location_label = tkinter.Label(self.folders_selection_window_frame, font=(None, 10), background=window_background_color, foreground=window_foreground_color, textvariable=self.listing_directory.location_label_text).pack(fill=tkinter.X, side=tkinter.TOP)
         self.folders_number_label = tkinter.Label(self.folders_selection_window_frame, font=(None, 10), background=window_background_color, foreground=window_foreground_color, textvariable=self.listing_directory.folders_number_label_text).pack(fill=tkinter.X, side=tkinter.TOP)
-        self.parent_button = tkinter.Button(self.folders_selection_window_frame, font=(None, 10), activeforeground=window_button_foreground_color, activebackground=window_button_focus_background_color, highlightbackground=window_background_color, background=window_button_background_color, foreground=window_button_foreground_color, text="View parent folder", command=self.parent_button_callback).pack(fill=tkinter.X, side=tkinter.TOP)
+        self.parent_button = tkinter.Button(self.folders_selection_window_frame, font=(None, 10), activeforeground=window_button_foreground_color, activebackground=window_button_focus_background_color, highlightbackground=window_background_color, background=window_button_background_color, foreground=window_button_foreground_color, text="Go to parent folder", command=self.parent_button_callback).pack(fill=tkinter.X, side=tkinter.TOP)
 
     def parent_button_callback(self):
 
