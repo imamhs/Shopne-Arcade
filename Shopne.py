@@ -1,4 +1,4 @@
-# Copyright (c) 2017, Md Imam Hossain (emamhd at gmail dot com)
+# Copyright (c) 2017-2021, Md Imam Hossain (emamhd at gmail dot com)
 # see LICENSE.txt for details
 
 from functools import partial
@@ -489,12 +489,12 @@ def player_default_selection_button_callback(player):
             shopne_variables.player1_button_selections[1].set(gamepad1_buttons[1])
             shopne_variables.player1_button_selections[2].set(gamepad1_buttons[2])
             shopne_variables.player1_button_selections[3].set(gamepad1_buttons[3])
-            shopne_variables.player1_button_selections[4].set(gamepad1_buttons[10])
-            shopne_variables.player1_button_selections[5].set(gamepad1_buttons[11])
-            shopne_variables.player1_button_selections[6].set(gamepad1_buttons[14])
-            shopne_variables.player1_button_selections[7].set(gamepad1_buttons[9])
-            shopne_variables.player1_button_selections[8].set(gamepad1_buttons[13])
-            shopne_variables.player1_button_selections[9].set(gamepad1_buttons[12])
+            shopne_variables.player1_button_selections[4].set(gamepad1_buttons[14])
+            shopne_variables.player1_button_selections[5].set(gamepad1_buttons[15])
+            shopne_variables.player1_button_selections[6].set(gamepad1_buttons[12])
+            shopne_variables.player1_button_selections[7].set(gamepad1_buttons[13])
+            shopne_variables.player1_button_selections[8].set(gamepad1_buttons[4])
+            shopne_variables.player1_button_selections[9].set(gamepad1_buttons[5])
 
         elif shopne_variables.player1_controller_selection.get() == GNGEO_CONTROLLERS[2]:
 
@@ -502,12 +502,12 @@ def player_default_selection_button_callback(player):
             shopne_variables.player1_button_selections[1].set(gamepad2_buttons[1])
             shopne_variables.player1_button_selections[2].set(gamepad2_buttons[2])
             shopne_variables.player1_button_selections[3].set(gamepad2_buttons[3])
-            shopne_variables.player1_button_selections[4].set(gamepad2_buttons[10])
-            shopne_variables.player1_button_selections[5].set(gamepad2_buttons[11])
-            shopne_variables.player1_button_selections[6].set(gamepad2_buttons[14])
-            shopne_variables.player1_button_selections[7].set(gamepad2_buttons[9])
-            shopne_variables.player1_button_selections[8].set(gamepad2_buttons[13])
-            shopne_variables.player1_button_selections[9].set(gamepad2_buttons[12])
+            shopne_variables.player1_button_selections[4].set(gamepad2_buttons[14])
+            shopne_variables.player1_button_selections[5].set(gamepad2_buttons[15])
+            shopne_variables.player1_button_selections[6].set(gamepad2_buttons[12])
+            shopne_variables.player1_button_selections[7].set(gamepad2_buttons[13])
+            shopne_variables.player1_button_selections[8].set(gamepad2_buttons[4])
+            shopne_variables.player1_button_selections[9].set(gamepad2_buttons[5])
 
     elif player == 2:
 
@@ -530,12 +530,12 @@ def player_default_selection_button_callback(player):
             shopne_variables.player2_button_selections[1].set(gamepad1_buttons[1])
             shopne_variables.player2_button_selections[2].set(gamepad1_buttons[2])
             shopne_variables.player2_button_selections[3].set(gamepad1_buttons[3])
-            shopne_variables.player2_button_selections[4].set(gamepad1_buttons[10])
-            shopne_variables.player2_button_selections[5].set(gamepad1_buttons[11])
-            shopne_variables.player2_button_selections[6].set(gamepad1_buttons[14])
-            shopne_variables.player2_button_selections[7].set(gamepad1_buttons[9])
-            shopne_variables.player2_button_selections[8].set(gamepad1_buttons[13])
-            shopne_variables.player2_button_selections[9].set(gamepad1_buttons[12])
+            shopne_variables.player2_button_selections[4].set(gamepad1_buttons[14])
+            shopne_variables.player2_button_selections[5].set(gamepad1_buttons[15])
+            shopne_variables.player2_button_selections[6].set(gamepad1_buttons[12])
+            shopne_variables.player2_button_selections[7].set(gamepad1_buttons[13])
+            shopne_variables.player2_button_selections[8].set(gamepad1_buttons[4])
+            shopne_variables.player2_button_selections[9].set(gamepad1_buttons[5])
 
         elif shopne_variables.player2_controller_selection.get() == GNGEO_CONTROLLERS[2]:
 
@@ -543,12 +543,12 @@ def player_default_selection_button_callback(player):
             shopne_variables.player2_button_selections[1].set(gamepad2_buttons[1])
             shopne_variables.player2_button_selections[2].set(gamepad2_buttons[2])
             shopne_variables.player2_button_selections[3].set(gamepad2_buttons[3])
-            shopne_variables.player2_button_selections[4].set(gamepad2_buttons[10])
-            shopne_variables.player2_button_selections[5].set(gamepad2_buttons[11])
-            shopne_variables.player2_button_selections[6].set(gamepad2_buttons[14])
-            shopne_variables.player2_button_selections[7].set(gamepad2_buttons[9])
-            shopne_variables.player2_button_selections[8].set(gamepad2_buttons[13])
-            shopne_variables.player2_button_selections[9].set(gamepad2_buttons[12])
+            shopne_variables.player2_button_selections[4].set(gamepad2_buttons[14])
+            shopne_variables.player2_button_selections[5].set(gamepad2_buttons[15])
+            shopne_variables.player2_button_selections[6].set(gamepad2_buttons[12])
+            shopne_variables.player2_button_selections[7].set(gamepad2_buttons[13])
+            shopne_variables.player2_button_selections[8].set(gamepad2_buttons[4])
+            shopne_variables.player2_button_selections[9].set(gamepad2_buttons[5])
 
 def player_controller_combobox_selection_callback (player, *args):
 
@@ -614,12 +614,12 @@ def player_controller_combobox_selection_callback (player, *args):
                 shopne_variables.player1_button_selections[1].set(gamepad1_buttons[1])
                 shopne_variables.player1_button_selections[2].set(gamepad1_buttons[2])
                 shopne_variables.player1_button_selections[3].set(gamepad1_buttons[3])
-                shopne_variables.player1_button_selections[4].set(gamepad1_buttons[10])
-                shopne_variables.player1_button_selections[5].set(gamepad1_buttons[11])
-                shopne_variables.player1_button_selections[6].set(gamepad1_buttons[14])
-                shopne_variables.player1_button_selections[7].set(gamepad1_buttons[9])
-                shopne_variables.player1_button_selections[8].set(gamepad1_buttons[13])
-                shopne_variables.player1_button_selections[9].set(gamepad1_buttons[12])
+                shopne_variables.player1_button_selections[4].set(gamepad1_buttons[14])
+                shopne_variables.player1_button_selections[5].set(gamepad1_buttons[15])
+                shopne_variables.player1_button_selections[6].set(gamepad1_buttons[12])
+                shopne_variables.player1_button_selections[7].set(gamepad1_buttons[13])
+                shopne_variables.player1_button_selections[8].set(gamepad1_buttons[4])
+                shopne_variables.player1_button_selections[9].set(gamepad1_buttons[5])
 
         elif shopne_variables.player1_controller_selection.get() == GNGEO_CONTROLLERS[2]:
 
@@ -635,12 +635,12 @@ def player_controller_combobox_selection_callback (player, *args):
                 shopne_variables.player1_button_selections[1].set(gamepad2_buttons[1])
                 shopne_variables.player1_button_selections[2].set(gamepad2_buttons[2])
                 shopne_variables.player1_button_selections[3].set(gamepad2_buttons[3])
-                shopne_variables.player1_button_selections[4].set(gamepad2_buttons[10])
-                shopne_variables.player1_button_selections[5].set(gamepad2_buttons[11])
-                shopne_variables.player1_button_selections[6].set(gamepad2_buttons[14])
-                shopne_variables.player1_button_selections[7].set(gamepad2_buttons[9])
-                shopne_variables.player1_button_selections[8].set(gamepad2_buttons[13])
-                shopne_variables.player1_button_selections[9].set(gamepad2_buttons[12])
+                shopne_variables.player1_button_selections[4].set(gamepad2_buttons[14])
+                shopne_variables.player1_button_selections[5].set(gamepad2_buttons[15])
+                shopne_variables.player1_button_selections[6].set(gamepad2_buttons[12])
+                shopne_variables.player1_button_selections[7].set(gamepad2_buttons[13])
+                shopne_variables.player1_button_selections[8].set(gamepad2_buttons[4])
+                shopne_variables.player1_button_selections[9].set(gamepad2_buttons[5])
 
         shopne_variables.player1_controller_selection_current.set(shopne_variables.player1_controller_selection.get())
 
@@ -699,12 +699,12 @@ def player_controller_combobox_selection_callback (player, *args):
                 shopne_variables.player2_button_selections[1].set(gamepad1_buttons[1])
                 shopne_variables.player2_button_selections[2].set(gamepad1_buttons[2])
                 shopne_variables.player2_button_selections[3].set(gamepad1_buttons[3])
-                shopne_variables.player2_button_selections[4].set(gamepad1_buttons[10])
-                shopne_variables.player2_button_selections[5].set(gamepad1_buttons[11])
-                shopne_variables.player2_button_selections[6].set(gamepad1_buttons[14])
-                shopne_variables.player2_button_selections[7].set(gamepad1_buttons[9])
-                shopne_variables.player2_button_selections[8].set(gamepad1_buttons[13])
-                shopne_variables.player2_button_selections[9].set(gamepad1_buttons[12])
+                shopne_variables.player2_button_selections[4].set(gamepad1_buttons[14])
+                shopne_variables.player2_button_selections[5].set(gamepad1_buttons[15])
+                shopne_variables.player2_button_selections[6].set(gamepad1_buttons[12])
+                shopne_variables.player2_button_selections[7].set(gamepad1_buttons[13])
+                shopne_variables.player2_button_selections[8].set(gamepad1_buttons[4])
+                shopne_variables.player2_button_selections[9].set(gamepad1_buttons[5])
 
         elif shopne_variables.player2_controller_selection.get() == GNGEO_CONTROLLERS[2]:
 
@@ -719,12 +719,12 @@ def player_controller_combobox_selection_callback (player, *args):
                 shopne_variables.player2_button_selections[1].set(gamepad2_buttons[1])
                 shopne_variables.player2_button_selections[2].set(gamepad2_buttons[2])
                 shopne_variables.player2_button_selections[3].set(gamepad2_buttons[3])
-                shopne_variables.player2_button_selections[4].set(gamepad2_buttons[10])
-                shopne_variables.player2_button_selections[5].set(gamepad2_buttons[11])
-                shopne_variables.player2_button_selections[6].set(gamepad2_buttons[14])
-                shopne_variables.player2_button_selections[7].set(gamepad2_buttons[9])
-                shopne_variables.player2_button_selections[8].set(gamepad2_buttons[13])
-                shopne_variables.player2_button_selections[9].set(gamepad2_buttons[12])
+                shopne_variables.player2_button_selections[4].set(gamepad2_buttons[14])
+                shopne_variables.player2_button_selections[5].set(gamepad2_buttons[15])
+                shopne_variables.player2_button_selections[6].set(gamepad2_buttons[12])
+                shopne_variables.player2_button_selections[7].set(gamepad2_buttons[13])
+                shopne_variables.player2_button_selections[8].set(gamepad2_buttons[4])
+                shopne_variables.player2_button_selections[9].set(gamepad2_buttons[5])
 
         shopne_variables.player2_controller_selection_current.set(shopne_variables.player2_controller_selection.get())
 
@@ -1187,12 +1187,12 @@ def load_settings():
         shopne_variables.player2_button_selections[1].set(gamepad1_buttons[1])
         shopne_variables.player2_button_selections[2].set(gamepad1_buttons[2])
         shopne_variables.player2_button_selections[3].set(gamepad1_buttons[3])
-        shopne_variables.player2_button_selections[4].set(gamepad1_buttons[10])
-        shopne_variables.player2_button_selections[5].set(gamepad1_buttons[11])
-        shopne_variables.player2_button_selections[6].set(gamepad1_buttons[14])
-        shopne_variables.player2_button_selections[7].set(gamepad1_buttons[9])
-        shopne_variables.player2_button_selections[8].set(gamepad1_buttons[13])
-        shopne_variables.player2_button_selections[9].set(gamepad1_buttons[12])
+        shopne_variables.player2_button_selections[4].set(gamepad1_buttons[14])
+        shopne_variables.player2_button_selections[5].set(gamepad1_buttons[15])
+        shopne_variables.player2_button_selections[6].set(gamepad1_buttons[12])
+        shopne_variables.player2_button_selections[7].set(gamepad1_buttons[13])
+        shopne_variables.player2_button_selections[8].set(gamepad1_buttons[4])
+        shopne_variables.player2_button_selections[9].set(gamepad1_buttons[5])
 
     if shopne_variables.player1_controller_selection.get() == GNGEO_CONTROLLERS[0]:
 
@@ -1414,10 +1414,8 @@ keyboard_keys = list(GNGEO_KEYBOARD_KEYCODES.keys())
 keyboard_keys.sort()
 
 gamepad1_buttons = list(GNGEO_GAMEPAD1_KEYCODES.keys())
-gamepad1_buttons.sort()
 
 gamepad2_buttons = list(GNGEO_GAMEPAD2_KEYCODES.keys())
-gamepad2_buttons.sort()
 
 game_countries = list(GNGEO_GAME_COUNTRIES.keys())
 game_countries.sort()
