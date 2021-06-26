@@ -15,21 +15,21 @@ Shopne Arcade is a front-end application designed to easily play Neo Geo system 
 
 Neo Geo system emulation and front-end features:
 
-Playing games in fullscreen mode
-Automatically adjusting video frame rates
-Interpolation between frames
-Using GPU memory for performance
-Synchronising video with monitor refresh rate
-Video scaling
-Video effects
-Selecting of rendering engine (Choose YUV for native like graphics and arbitrary window scaling using window handles)
-Emulating audio in different sampling rates
-Full controller configuration for keyboard and gamepads
-Support for different Neo Geo region BIOS
-Save and Load games states (state files are saved in the directory .gngeo inside users home folder)
-Showing games cover arts (double click into the game list)
-Adding multiple game roms files locations
-Saving all settings
+- Playing games in fullscreen mode
+- Automatically adjusting video frame rates
+- Interpolation between frames
+- Using GPU memory for performance
+- Synchronising video with monitor refresh rate
+- Video scaling
+- Video effects
+- Selecting of rendering engine (Choose YUV for native like graphics and arbitrary window scaling using window handles)
+- Emulating audio in different sampling rates
+- Full controller configuration for keyboard and gamepads
+- Support for different Neo Geo region BIOS
+- Save and Load games states (state files are saved in the directory .gngeo inside users home folder)
+- Showing games cover arts (double click into the game list)
+- Adding multiple game roms files locations
+- Saving all settings
 
 ![Main window](screenshot/mw.png)
 ![Graphics settings](screenshot/gr.png)
