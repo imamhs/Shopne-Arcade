@@ -1,7 +1,7 @@
-# Copyright (c) 2017-2021, Md Imam Hossain (emamhd at gmail dot com)
+# Copyright (c) 2017-2025, Md Imam Hossain (emamhd at gmail dot com)
 # see LICENSE.txt for details
 
-from os import popen
+from subprocess import Popen, PIPE
 
 GNGEO_AUDIO_SAMPLE_RATES = ['default', '8000', '11025', '16000', '22050', '24000', '44100']
 GNGEO_VIDEO_EFFECTS = ['default', 'hq2x', 'hq3x', 'lq2x', 'lq3x', 'scanline', 'scanline50', 'scale2x50', 'scale2x75', 'disabled']
@@ -41,10 +41,12 @@ class GnGeo():
     def set_exe(self, _exe_path, _data_path, _exe_dir):
 
         command_buffer = 'LD_LIBRARY_PATH=\"$LD_LIBRARY_PATH\":' + '\"' + _exe_dir + '\" ' + '\"' + _exe_path + '\"' + ' --version'
-        command = popen(command_buffer)
-        command_output = command.read()
 
-        if command.close() == None:
+        command = Popen(command_buffer, shell=True, stdout=PIPE, stderr=PIPE, text=True)
+
+        command_output, stderr = command.communicate()
+
+        if len(stderr) == 0:
 
             for command_output_line in command_output.split('\n'):
 
@@ -168,11 +170,12 @@ class GnGeo():
 
         print('Shopne Arcade: loading game ...\n', command_buffer, '\n')
 
-        command = popen(command_buffer)
-        command_output = command.read()
+        command = Popen(command_buffer, shell=True, stdout=PIPE, stderr=PIPE, text=True)
+
+        command_output, stderr = command.communicate()
 
         print('Shopne Arcade: GnGeo output\n', command_output, '\n')
 
-        if command.close() == None:
+        if len(stderr) == 0:
             return 0
         return 1

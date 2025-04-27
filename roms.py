@@ -1,4 +1,4 @@
-# Copyright (c) 2017, Md Imam Hossain (emamhd at gmail dot com)
+# Copyright (c) 2017-2021, Md Imam Hossain (emamhd at gmail dot com)
 # see LICENSE.txt for details
 
 from os import listdir
@@ -35,7 +35,7 @@ class Roms():
             try:
                 directory_files = listdir(directory)
             except FileNotFoundError:
-                print('Shopne Arcade:', directory, 'does not exist')
+                print('Error:', '"'+directory+'"', 'does not exist')
             else:
                 pass
 

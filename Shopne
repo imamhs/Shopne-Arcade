@@ -1,8 +1,11 @@
-# Copyright (c) 2017-2021, Md Imam Hossain (emamhd at gmail dot com)
+#!/usr/bin/python3
+
+# Copyright (c) 2017-2025, Md Imam Hossain (emamhd at gmail dot com)
 # see LICENSE.txt for details
 
 from functools import partial
 import os
+import sys
 import json
 import tkinter
 from roms import Roms
@@ -123,7 +126,7 @@ def roms_directory_open_button_callback(window, dir_list_widget, folder_selectio
 
 def add_directory_button_callback(window, dir_list_widget):
 
-    global shopne_variables
+    global shopne_variables, app_path
 
     window_background_color = '#171718'
     window_foreground_color = '#FFFFFF'
@@ -139,7 +142,7 @@ def add_directory_button_callback(window, dir_list_widget):
     rom_directories_selection_dialog_frame.pack_propagate(False)
     rom_directories_selection_dialog_frame.pack(fill=tkinter.BOTH, expand=tkinter.TRUE)
 
-    folder_selection = FoldersSelectionWindow(rom_directories_selection_dialog_frame, shopne_variables.currrent_roms_directory_location.get(), './data/folder_icon.gif', window_background_color=window_background_color, window_foreground_color=window_foreground_color, window_button_background_color=window_button_background_color, window_button_focus_background_color=window_button_focus_background_color, window_button_foreground_color=window_button_foreground_color)
+    folder_selection = FoldersSelectionWindow(rom_directories_selection_dialog_frame, shopne_variables.currrent_roms_directory_location.get(), app_path + '/data/folder_icon.gif', window_background_color=window_background_color, window_foreground_color=window_foreground_color, window_button_background_color=window_button_background_color, window_button_focus_background_color=window_button_focus_background_color, window_button_foreground_color=window_button_foreground_color)
 
     folder_selection.folders_selection_window_frame.pack(fill=tkinter.BOTH, expand=tkinter.TRUE, side=tkinter.TOP)
 
@@ -199,8 +202,16 @@ def rom_directories_selection_button_callback(window, game_list_widget):
 
     game_list_widget.delete(0, tkinter.END)
 
+    found_roms = []
+
     for rom in roms.roms:
-        game_list_widget.insert(tkinter.END, GNGEO_ROMS_LIST[rom])
+        found_roms.append(GNGEO_ROMS_LIST[rom])
+
+    found_roms.sort(key=str.lower)
+
+    for rom in found_roms:
+        game_list_widget.insert(tkinter.END, rom)
+        game_list_widget.itemconfig(tkinter.END, bg = 'gray95' if game_list_widget.size() % 2 == 0 else 'gray98')
 
     number_of_roms = game_list_widget.size()
 
@@ -940,7 +951,7 @@ def game_options_button_callback(window):
 
 def about_button_callback(window):
 
-    global shopne_variables
+    global shopne_variables, app_path
 
     window_background_color = '#171718'
     window_foreground_color = '#FFFFFF'
@@ -956,7 +967,7 @@ def about_button_callback(window):
     about_window_frame.pack_propagate(False)
     about_window_frame.pack(fill=tkinter.BOTH, expand=tkinter.TRUE, side=tkinter.TOP)
 
-    shopne_arcade_logo_image = tkinter.PhotoImage(file='./data/logo.png')
+    shopne_arcade_logo_image = tkinter.PhotoImage(file=app_path+'/data/logo.png')
 
     shopne_arcade_logo = tkinter.Label(about_window_frame, image=shopne_arcade_logo_image, background=window_background_color, foreground=window_foreground_color)
     shopne_arcade_logo.pack(fill=tkinter.BOTH, expand=tkinter.TRUE, side=tkinter.TOP, padx=20, pady=10)
@@ -981,6 +992,8 @@ def about_button_callback(window):
 
 def cover_callback(event, window, game_list_widget):
 
+    global shopne_variables, app_path
+
     window_background_color = '#171718'
     window_foreground_color = '#FFFFFF'
     window_button_background_color = '#B17513'
@@ -1004,7 +1017,7 @@ def cover_callback(event, window, game_list_widget):
             rom_selection = rom
             break
 
-    cover_arcade_logo_image = tkinter.PhotoImage(file='./data/covers/' + rom_selection + '.png')
+    cover_arcade_logo_image = tkinter.PhotoImage(file=app_path +'/data/covers/' + rom_selection + '.png')
 
     cover_arcade_logo = tkinter.Label(cover_window_frame, image=cover_arcade_logo_image, background=window_background_color, foreground=window_foreground_color)
     cover_arcade_logo.pack(fill=tkinter.BOTH, expand=tkinter.TRUE, side=tkinter.TOP, padx=5, pady=5)
@@ -1041,14 +1054,14 @@ def load_rom_callback(window, game_list_widget):
 # load settings from files
 def load_settings():
 
-    global shopne_variables, gngeo_engine_data, roms
+    global shopne_variables, gngeo_engine_data, roms, user_directory_location
 
     shopne_variables.initialise()
 
-    shopne_variables.currrent_roms_directory_location.set(os.path.expanduser('~'))
+    shopne_variables.currrent_roms_directory_location.set(user_directory_location)
 
-    if os.path.isfile('./settings/game_options.json'):
-        game_options_conf_file = open("./settings/game_options.json", "r")
+    if os.path.isfile(user_directory_location+'/.config/shopne/game_options.json'):
+        game_options_conf_file = open(user_directory_location+'/.config/shopne/game_options.json', "r")
         gngeo_engine_data.game_options.clear()
         try:
             gngeo_engine_data.game_options = json.load(game_options_conf_file)
@@ -1065,8 +1078,8 @@ def load_settings():
 
     gngeo_engine.country = GNGEO_GAME_COUNTRIES[shopne_variables.game_country_selection.get()]
 
-    if os.path.isfile('./settings/sound.json'):
-        sound_conf_file = open("./settings/sound.json", "r")
+    if os.path.isfile(user_directory_location+'/.config/shopne/sound.json'):
+        sound_conf_file = open(user_directory_location+'/.config/shopne/sound.json', "r")
         gngeo_engine_data.audio_configuration.clear()
         try:
             gngeo_engine_data.audio_configuration = json.load(sound_conf_file)
@@ -1090,8 +1103,8 @@ def load_settings():
 
     gngeo_engine.samplerate = shopne_variables.audio_sampling_combobox_selection.get()
 
-    if os.path.isfile('./settings/graphics.json'):
-        graphics_conf_file = open("./settings/graphics.json", "r")
+    if os.path.isfile(user_directory_location+'/.config/shopne/graphics.json'):
+        graphics_conf_file = open(user_directory_location+'/.config/shopne/graphics.json', "r")
         gngeo_engine_data.graphics_configuration.clear()
         try:
             gngeo_engine_data.graphics_configuration = json.load(graphics_conf_file)
@@ -1152,8 +1165,8 @@ def load_settings():
     gngeo_engine.effect = shopne_variables.video_effects_combobox_selection.get()
     gngeo_engine.blitter = shopne_variables.video_renderer_combobox_selection.get()
 
-    if os.path.isfile('./settings/control1.json'):
-        controller_conf_file = open("./settings/control1.json", "r")
+    if os.path.isfile(user_directory_location+'/.config/shopne/control1.json'):
+        controller_conf_file = open(user_directory_location+'/.config/shopne/control1.json', "r")
         gngeo_engine_data.controller_configuration.clear()
         try:
             gngeo_engine_data.controller_configuration = json.load(controller_conf_file)
@@ -1192,8 +1205,8 @@ def load_settings():
         shopne_variables.player1_button_selections[9].set(keyboard_keys[3])
 
 
-    if os.path.isfile('./settings/control2.json'):
-        controller_conf_file = open("./settings/control2.json", "r")
+    if os.path.isfile(user_directory_location+'/.config/shopne/control2.json'):
+        controller_conf_file = open(user_directory_location+'/.config/shopne/control2.json', "r")
         gngeo_engine_data.controller_configuration.clear()
         try:
             gngeo_engine_data.controller_configuration = json.load(controller_conf_file)
@@ -1255,8 +1268,8 @@ def load_settings():
 
         gngeo_engine.p2control = 'A=' + GNGEO_GAMEPAD2_KEYCODES[shopne_variables.player2_button_selections[0].get()] + ',B=' + GNGEO_GAMEPAD2_KEYCODES[shopne_variables.player2_button_selections[1].get()] + ',C=' + GNGEO_GAMEPAD2_KEYCODES[shopne_variables.player2_button_selections[2].get()] + ',D=' + GNGEO_GAMEPAD2_KEYCODES[shopne_variables.player2_button_selections[3].get()] + ',LEFT=' + GNGEO_GAMEPAD2_KEYCODES[shopne_variables.player2_button_selections[4].get()] + ',RIGHT=' + GNGEO_GAMEPAD2_KEYCODES[shopne_variables.player2_button_selections[5].get()] + ',UP=' + GNGEO_GAMEPAD2_KEYCODES[shopne_variables.player2_button_selections[6].get()] + ',DOWN=' + GNGEO_GAMEPAD2_KEYCODES[shopne_variables.player2_button_selections[7].get()] + ',START=' + GNGEO_GAMEPAD2_KEYCODES[shopne_variables.player2_button_selections[8].get()] + ',COIN=' + GNGEO_GAMEPAD2_KEYCODES[shopne_variables.player2_button_selections[9].get()]
 
-    if os.path.isfile('./settings/roms_locations.json'):
-        roms_locations_conf_file = open("./settings/roms_locations.json", "r")
+    if os.path.isfile(user_directory_location+'/.config/shopne/roms_locations.json'):
+        roms_locations_conf_file = open(user_directory_location+'/.config/shopne/roms_locations.json', "r")
         gngeo_engine_data.roms_directories.clear()
         try:
             gngeo_engine_data.roms_directories = json.load(roms_locations_conf_file)
@@ -1276,12 +1289,12 @@ def load_settings():
 # save settings to files
 def save_settings():
 
-    global shopne_variables, gngeo_engine_data, roms
+    global shopne_variables, gngeo_engine_data, roms, user_directory_location
 
     gngeo_engine_data.game_options.clear()
     gngeo_engine_data.game_options['country'] = shopne_variables.game_country_selection.get()
 
-    game_options_conf_file = open("./settings/game_options.json", "w")
+    game_options_conf_file = open(user_directory_location+'/.config/shopne/game_options.json', "w")
     json.dump(gngeo_engine_data.game_options, game_options_conf_file)
     game_options_conf_file.close()
 
@@ -1289,7 +1302,7 @@ def save_settings():
     gngeo_engine_data.audio_configuration['sampling rate'] = shopne_variables.audio_sampling_combobox_selection.get()
     gngeo_engine_data.audio_configuration['emulate audio'] = shopne_variables.sound_ckeck_button_state.get()
 
-    sound_conf_file = open("./settings/sound.json", "w")
+    sound_conf_file = open(user_directory_location+'/.config/shopne/sound.json', "w")
     json.dump(gngeo_engine_data.audio_configuration, sound_conf_file)
     sound_conf_file.close()
 
@@ -1303,7 +1316,7 @@ def save_settings():
     gngeo_engine_data.graphics_configuration['effect'] = shopne_variables.video_effects_combobox_selection.get()
     gngeo_engine_data.graphics_configuration['renderer'] = shopne_variables.video_renderer_combobox_selection.get()
 
-    graphics_conf_file = open("./settings/graphics.json", "w")
+    graphics_conf_file = open(user_directory_location+'/.config/shopne/graphics.json', "w")
     json.dump(gngeo_engine_data.graphics_configuration, graphics_conf_file)
     graphics_conf_file.close()
 
@@ -1320,7 +1333,7 @@ def save_settings():
     gngeo_engine_data.controller_configuration['START'] = shopne_variables.player1_button_selections[8].get()
     gngeo_engine_data.controller_configuration['COIN'] = shopne_variables.player1_button_selections[9].get()
 
-    controller_conf_file = open("./settings/control1.json", "w")
+    controller_conf_file = open(user_directory_location+'/.config/shopne/control1.json', "w")
     json.dump(gngeo_engine_data.controller_configuration, controller_conf_file)
     controller_conf_file.close()
 
@@ -1337,7 +1350,7 @@ def save_settings():
     gngeo_engine_data.controller_configuration['START'] = shopne_variables.player2_button_selections[8].get()
     gngeo_engine_data.controller_configuration['COIN'] = shopne_variables.player2_button_selections[9].get()
 
-    controller_conf_file = open("./settings/control2.json", "w")
+    controller_conf_file = open(user_directory_location+'/.config/shopne/control2.json', "w")
     json.dump(gngeo_engine_data.controller_configuration, controller_conf_file)
     controller_conf_file.close()
 
@@ -1347,13 +1360,13 @@ def save_settings():
 
         gngeo_engine_data.roms_directories[str(i)] = roms.directories[i]
 
-    roms_locations_conf_file = open("./settings/roms_locations.json", "w")
+    roms_locations_conf_file = open(user_directory_location+'/.config/shopne/roms_locations.json', "w")
     json.dump(gngeo_engine_data.roms_directories, roms_locations_conf_file)
     roms_locations_conf_file.close()
 
 def main(gngeo_status):
 
-    global shopne_variables, roms
+    global shopne_variables, roms, app_path
 
     application_background_color = '#F7F7F7'
     button_background_color = '#4285F4'
@@ -1361,7 +1374,7 @@ def main(gngeo_status):
     button_foreground_color = '#FFFFFF'
 
     main_window = tkinter.Tk()
-    icon = tkinter.PhotoImage(file='./data/icon.png')
+    icon = tkinter.PhotoImage(file=app_path+'/data/icon.png')
     main_window.title("Shopne Arcade")
     main_window.geometry('%dx%d+%d+%d' % (640, 480, (main_window.winfo_screenwidth()/2)-(640/2), (main_window.winfo_screenheight()/2)-(480/2)))
     main_window.tk.call('wm', 'iconphoto', main_window._w, '-default', icon)
@@ -1378,8 +1391,17 @@ def main(gngeo_status):
     rom_list_label = tkinter.Label(rom_list_frame, text="Games", font=(None, 14, 'bold'), background=application_background_color)
     rom_list_label.pack(side=tkinter.TOP, anchor=tkinter.NW)
 
-    game_list = tkinter.Listbox(rom_list_frame, selectmode=tkinter.SINGLE, relief=tkinter.FLAT, highlightthickness=2, font=(None, 14), activestyle='underline', cursor='hand1')
-    game_list.pack(fill=tkinter.BOTH, expand=tkinter.TRUE, side=tkinter.TOP)
+    game_list_frame = tkinter.Frame(rom_list_frame, background=application_background_color)
+    game_list_frame.pack(fill=tkinter.BOTH, expand=tkinter.TRUE, side=tkinter.TOP)
+
+    game_list_scrollbar = tkinter.Scrollbar(game_list_frame)
+
+    game_list = tkinter.Listbox(game_list_frame, yscrollcommand=game_list_scrollbar.set, selectmode=tkinter.SINGLE, relief=tkinter.FLAT, highlightthickness=2, font=(None, 14), activestyle='underline', cursor='hand1')
+
+    game_list_scrollbar.config(command=game_list.yview)
+    game_list_scrollbar.pack(side=tkinter.RIGHT, fill=tkinter.BOTH)
+
+    game_list.pack(side=tkinter.LEFT, fill=tkinter.BOTH, expand=True)
     game_list.focus()
     game_list.bind('<Double-Button-1>', lambda event: cover_callback(event, main_window, game_list))
 
@@ -1387,8 +1409,15 @@ def main(gngeo_status):
 
         roms.update_roms()
 
+        found_roms = []
+
         for rom in roms.roms:
-            game_list.insert(tkinter.END, GNGEO_ROMS_LIST[rom])
+            found_roms.append(GNGEO_ROMS_LIST[rom])
+
+        found_roms.sort(key=str.lower)
+
+        for rom in found_roms:
+            game_list.insert(tkinter.END, rom)
             game_list.itemconfig(tkinter.END, bg = 'gray95' if game_list.size() % 2 == 0 else 'gray98')
 
         number_of_roms = game_list.size()
@@ -1464,10 +1493,17 @@ roms = Roms()
 gngeo_engine = GnGeo()
 shopne_variables = ShopneVariables()
 gngeo_engine_data = GngeoEngineData()
+user_directory_location = os.path.expanduser('~')
+app_path = os.path.abspath(os.getcwd())
 
 if __name__ == '__main__':
 
-    gngeo_path = os.path.join(os.path.abspath(os.getcwd()), 'gngeo')
+    if len(sys.argv) > 1:
+        if sys.argv[1:][0] == 'flatpak':
+            app_path = '/app/games/shopne'
+
+    gngeo_path = app_path + '/gngeo'
+
     gngeo_exe = os.path.join(gngeo_path, 'gngeo_bin')
     gngeo_data = os.path.join(gngeo_path, 'gngeo_data.zip')
 
