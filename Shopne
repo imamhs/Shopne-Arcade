@@ -1294,6 +1294,15 @@ def save_settings():
     gngeo_engine_data.game_options.clear()
     gngeo_engine_data.game_options['country'] = shopne_variables.game_country_selection.get()
 
+    if not os.path.exists(user_directory_location+'/.config/shopne'):
+        try:
+            os.makedirs(user_directory_location+'/.config/shopne')
+            print(f"Folder '{user_directory_location+'/.config/shopne'}' created successfully.")
+        except PermissionError:
+            print(f"Error: Permission denied. Cannot create config folder {user_directory_location+'/.config/shopne'}.")
+        except Exception as e:
+            print(f"An error occurred: {e}")
+
     game_options_conf_file = open(user_directory_location+'/.config/shopne/game_options.json', "w")
     json.dump(gngeo_engine_data.game_options, game_options_conf_file)
     game_options_conf_file.close()
