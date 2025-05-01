@@ -1,6 +1,6 @@
 Copyright notice:
 
-(C) 2017-2021 Md Imam Hossain
+(C) 2017-2025 Md Imam Hossain
 
 This software is provided 'as-is', without any express or implied
 warranty.  In no event will the authors be held liable for any damages
