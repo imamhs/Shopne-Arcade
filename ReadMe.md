@@ -1,19 +1,17 @@
 Shopne Arcade - A Frontend for GnGeo NeoGeo emulator written in pure Python
 
-Copyright © 2017-2025 Md Imam Hossain <emamhd@gmail.com> 
-
 This program uses:
 
 - Python TkInter for the graphical user interface 
-- GnGeo for emulating Neo Geo system on Linux PC (GnGeo binary (gngeo_bin) and gngeo_data.zip files need to be placed inside the gngeo subfolder of Shopne Arcade program folder)
+- GnGeo for emulating Neo Geo system on Linux PC (rename GnGeo executable to gngeo_bin and copy it alongside with gngeo_data.zip files inside the gngeo subfolder of Shopne Arcade program folder)
 
-To install TKInter on Ubuntu, run the following command into the terminal emulator:
+To install TKInter on Ubuntu, run the following command into the terminal:
 
 sudo apt-get install python3-tk
     
-Shopne Arcade is a front-end application designed to easily play Neo Geo system games on PC. It's interface is compatible for screens with low resolution such as 640x480 pixels. It lets users play Neo Geo system games from one interface where users will be able pick different game play experience settings such as Neo Geo games video resolutions, audio sampling rates, etc. Shopne Arcade is written in pure Python language without any external dependencies making it portable across various Linux Distributions.
+Shopne Arcade is a front-end application designed to easily play Neo Geo system games on PC. It's interface is compatible for screens with low resolution such as 640x480 pixels. It lets users play Neo Geo system games from one interface where users will be able pick different game play experience settings such as Neo Geo games video resolutions, audio sampling rates, etc. Shopne Arcade is written in pure Python language without any external dependencies making it portable frontend.
 
-Neo Geo system emulation and front-end features:
+Neo Geo system emulation settings and front-end features:
 
 - Playing games in fullscreen mode
 - Automatically adjusting video frame rates
